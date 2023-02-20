@@ -33,5 +33,5 @@ build/
 .vscode/
 
 /src/main/resources/
-/src/keystore.jks
-/src/truststore.jks
+keystore.jks
+truststore.jks
