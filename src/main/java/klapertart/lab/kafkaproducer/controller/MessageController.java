@@ -2,7 +2,6 @@ package klapertart.lab.kafkaproducer.controller;
 
 import klapertart.lab.kafkaproducer.data.User;
 import klapertart.lab.kafkaproducer.producers.KafkaProducer;
-import klapertart.lab.kafkaproducer.producers.KafkaProducerLocal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

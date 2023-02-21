@@ -1,5 +1,6 @@
 package klapertart.lab.kafkaproducer.properties;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("server.ssl")
 @Getter
 @Setter
+@Data
 public class HttpsProperties {
     private boolean enabled;
     private String keyStore;

@@ -41,53 +41,8 @@ public class KafkaProducerConfig {
     private HttpsProperties httpsProperties;
 
 
-
-
-
-    //******* Local configuration
-
     @Bean
-    @Profile("local")
-    public ProducerFactory<String,String> stringProducerFactoryLocal(){
-        Map<String,Object> configs = new HashMap<>();
-        configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
-        configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-
-        return new DefaultKafkaProducerFactory<>(configs);
-    }
-
-    @Bean
-    @Profile("local")
-    public ProducerFactory<String, ?> objectProducerFactoryLocal(){
-        Map<String,Object> configs = new HashMap<>();
-        configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,kafkaProperties.getBootstrapServers());
-        configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
-        configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-
-        return new DefaultKafkaProducerFactory<>(configs);
-    }
-
-    @Bean
-    @Profile("local")
-    public KafkaTemplate<String,String> stringKafkaTemplateLocal(){
-        return new KafkaTemplate<>(stringProducerFactoryLocal());
-    }
-
-    @Bean
-    @Profile("local")
-    public KafkaTemplate<String,?> objectKafkaTemplateLocal(){
-        return new KafkaTemplate<>(objectProducerFactoryLocal());
-    }
-
-
-
-
-    //******* Devel configuration
-
-    @Bean
-    @Profile("devel")
-    public ProducerFactory<String,String> stringProducerFactoryDevel(){
+    public ProducerFactory<String,String> stringProducerFactory(){
 
         Map<String,Object> configs = new HashMap<>();
         configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
@@ -95,6 +50,7 @@ public class KafkaProducerConfig {
         configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
         if(sslProperties.isEnabled()) {
+            log.info("### BOOTSERVER : {}",kafkaProperties.getBootstrapServers());
             configs.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
             configs.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, sslProperties.getTruststore().getLocation());
             configs.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, sslProperties.getTruststore().getPassword());
@@ -110,8 +66,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    @Profile("devel")
-    public ProducerFactory<String, ?> objectProducerFactoryDevel(){
+    public ProducerFactory<String, ?> objectProducerFactory(){
         Map<String,Object> configs = new HashMap<>();
         configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,kafkaProperties.getBootstrapServers());
         configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
@@ -133,15 +88,13 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    @Profile("devel")
-    public KafkaTemplate<String,String> stringKafkaTemplateDevel(){
-        return new KafkaTemplate<>(stringProducerFactoryDevel());
+    public KafkaTemplate<String,String> stringKafkaTemplate(){
+        return new KafkaTemplate<>(stringProducerFactory());
     }
 
     @Bean
-    @Profile("devel")
-    public KafkaTemplate<String,?> objectKafkaTemplateDevel(){
-        return new KafkaTemplate<>(objectProducerFactoryDevel());
+    public KafkaTemplate<String,?> objectKafkaTemplate(){
+        return new KafkaTemplate<>(objectProducerFactory());
     }
 
 }
