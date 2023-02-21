@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@ConfigurationProperties("server.ssl")
 @Getter
 @Setter
-@ConfigurationProperties("server.ssl")
 public class HttpsProperties {
-    private String enabled;
+    private boolean enabled;
     private String keyStore;
     private String keyStorePassword;
     private String keyStoreType;
