@@ -1,4 +1,4 @@
-package klapertart.lab.kafkaproducer.data;
+package klapertart.lab.kafkaproducer.properties;
 
 import lombok.Getter;
 import lombok.Setter;

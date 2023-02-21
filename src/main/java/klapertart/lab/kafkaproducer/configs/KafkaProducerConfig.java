@@ -1,6 +1,6 @@
 package klapertart.lab.kafkaproducer.configs;
 
-import klapertart.lab.kafkaproducer.data.KafkaProperties;
+import klapertart.lab.kafkaproducer.properties.KafkaProperties;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;

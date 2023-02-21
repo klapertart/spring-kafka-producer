@@ -1,7 +1,8 @@
 package klapertart.lab.kafkaproducer;
 
-import klapertart.lab.kafkaproducer.data.KafkaProperties;
-import klapertart.lab.kafkaproducer.data.SslProperties;
+import klapertart.lab.kafkaproducer.properties.HttpsProperties;
+import klapertart.lab.kafkaproducer.properties.KafkaProperties;
+import klapertart.lab.kafkaproducer.properties.SslProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -9,7 +10,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @SpringBootApplication
 @EnableConfigurationProperties(value = {
 		KafkaProperties.class,
-		SslProperties.class
+		SslProperties.class,
+		HttpsProperties.class
 })
 public class SpringbootKafkaProducerApplication {
 
