@@ -50,7 +50,6 @@ public class KafkaProducerConfig {
         configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
         if(sslProperties.isEnabled()) {
-            log.info("### BOOTSERVER : {}",kafkaProperties.getBootstrapServers());
             configs.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
             configs.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, sslProperties.getTruststore().getLocation());
             configs.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, sslProperties.getTruststore().getPassword());
